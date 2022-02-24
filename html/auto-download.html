@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>force download and redirect</title>
+</head>
+<body>
+    <script>
+        function openURI(uri, name, target, forceDownload=false)
+        {
+            var link = document.createElement("a");
+            // If you don't know the name or want to use
+            // the webserver default set name = ''
+
+            link.href = uri;
+            if(target) {
+                link.target = target;
+            }
+            if(forceDownload) {
+                link.setAttribute('download', name);
+            }
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        }
+
+        docReady(function() {
+            // DOM is loaded and ready for manipulation here
+            var urlToDownload='/pdf/dummy.pdf';
+            var urlToOpen='https://acortech.it';
+
+            openURI(urlToDownload, "dummy.pdf", "_blank",true);
+            openURI(urlToOpen, "acortech.it", null,false);
+        });
+        function docReady(fn) {
+            // see if DOM is already available
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                // call on next available tick
+                setTimeout(fn, 1);
+            } else {
+                document.addEventListener("DOMContentLoaded", fn);
+            }
+        }
+    </script>
+
+    This sample html page on load complete will force download of the pdf file and then redirect to
+    the given url (www.acortech.it). <br>
+    Tested on Firefox and Chrome.
+</body>
+</html>
