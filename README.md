@@ -7,4 +7,4 @@ An idea by [Marco Acorte](https://github.com/marco-acorte).
 
 ## Table of Contents
 
-- [HTML](html/README.md) samples about html + js
+- [html](html/README.md) samples about html + js
